@@ -41,7 +41,7 @@ ClientControlStrategy::ClientControlStrategy(Forwarder& forwarder, const Name& n
   }
   if (parsed.version && *parsed.version != getStrategyName()[-1].toVersion()) {
     BOOST_THROW_EXCEPTION(std::invalid_argument(
-      "ClientControlStrategy does not support version " + std::to_string(*parsed.version)));
+      "ClientControlStrategy does not support version " + to_string(*parsed.version)));
   }
   this->setInstanceName(makeInstanceName(name, getStrategyName()));
 

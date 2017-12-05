@@ -134,7 +134,7 @@ FindFace::query()
   };
   auto failureCb = [this] (uint32_t code, const std::string& reason) {
     m_res = Code::ERROR;
-    m_errorReason = "Error " + std::to_string(code) + " when querying face: " + reason;
+    m_errorReason = "Error " + to_string(code) + " when querying face: " + reason;
   };
 
   if (m_filter.empty()) {
