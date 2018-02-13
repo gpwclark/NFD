@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 MAINTAINER gpwclark
 
-# install software to install nfd
+# install ubuntu prereqs to install nfd
 RUN apt-get update && apt-get install -y \
   vim \
   software-properties-common
