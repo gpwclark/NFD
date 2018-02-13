@@ -1,6 +1,42 @@
 NFD - Named Data Networking Forwarding Daemon
 =============================================
 
+# For Docker
+---
+- Suggested command to use default config (/nfd.conf.sample):
+```
+docker run -d -p 6363:6363 --name nfd1 gpwclark/nfd
+```
+
+- To override the default config you have to mount a folder where the conf can
+be read and then pass the location of that conf to the nfd daemon. The exposed
+volume in the Dockerfile is '/nfd/etc'.
+(/nfd_conf/nfd.conf):
+```
+docker run -d -p 6363:6363 --name nfd2 -v /path/to/this/repo/NFD/nfd_conf:/nfd/etc gpwclark/nfd -c /nfd/etc/nfd.conf
+```
+
+To verify that the new nfd_conf/nfd.conf configuration is being used note that
+the output of 
+```
+docker logs -f nfd1
+``` 
+includes DEBUG level output as specified by the default_level in the log block
+of the nfd.conf whereas the output of 
+```
+docker logs -f nfd2
+```
+includes ALL logging output (note the TRACE statements).
+
+
+- If you need to specify your own certs/ and nfd.conf just mount a host dir
+with those files over the default nfd etc folder. 
+```
+docker run -d -p 6363:6363 -v /path/to/all/ndn/config:/etc/ndn/ gpwclark/nfd
+```
+
+# From NFD 
+
 [![Build Status](https://travis-ci.org/named-data/NFD.svg?branch=master)](https://travis-ci.org/named-data/NFD)
 
 For complete documentation, including step-by-step installation instructions and

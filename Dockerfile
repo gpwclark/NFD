@@ -20,5 +20,8 @@ COPY nfd.conf.sample /etc/ndn/nfd.conf
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+VOLUME ["/nfd/etc"]
+
 #run nfd
-CMD ["/usr/bin/nfd"]
+ENTRYPOINT ["/usr/bin/nfd"]
+CMD ["-c", "/etc/ndn/nfd.conf"]
