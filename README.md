@@ -5,7 +5,7 @@ NFD - Named Data Networking Forwarding Daemon
 ---
 - Suggested command to use default config (/nfd.conf.sample):
 ```
-docker run -d -p 6363:6363 --name nfd1 gpwclark/nfd
+docker run --net=host -d -p 6363:6363 --name nfd1 gpwclark/nfd
 ```
 
 - To override the default config you have to mount a folder where the conf can
@@ -13,7 +13,7 @@ be read and then pass the location of that conf to the nfd daemon. The exposed
 volume in the Dockerfile is '/nfd/etc'.
 (/nfd_conf/nfd.conf):
 ```
-docker run -d -p 6363:6363 --name nfd2 -v /path/to/this/repo/NFD/nfd_conf:/nfd/etc gpwclark/nfd -c /nfd/etc/nfd.conf
+docker run -d -p 6363:6363 --net=host --name nfd2 -v /path/to/this/repo/NFD/nfd_conf:/nfd/etc gpwclark/nfd -c /nfd/etc/nfd.conf
 ```
 
 To verify that the new nfd_conf/nfd.conf configuration is being used note that
